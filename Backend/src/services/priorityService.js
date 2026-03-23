@@ -2,12 +2,16 @@ export const calculatePriority = (deadline) => {
   if (!deadline) return 0;
 
   const now = new Date();
-  const due = new Date(deadline);
 
-  const diff = (due - now) / (1000 * 60 * 60); // giờ
+  // 🔥 parse thủ công
+  const [year, month, day] = deadline.split("-");
 
-  if (diff < 0) return 100;      // quá hạn
-  if (diff < 24) return 80;      // < 1 ngày
-  if (diff < 72) return 60;      // < 3 ngày
+  const due = new Date(year, month - 1, day);
+
+  const diff = (due - now) / (1000 * 60 * 60);
+
+  if (diff < 0) return 100;
+  if (diff < 24) return 80;
+  if (diff < 72) return 60;
   return 30;
 };

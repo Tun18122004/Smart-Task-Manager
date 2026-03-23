@@ -7,7 +7,7 @@ import assignmentRoutes from './routes/assignmentRoutes.js';
 import commentRoutes from './routes/commentRoutes.js';
 import { startReminderJob } from './cron/reminderCron.js';
 import dashboardRoutes from './routes/dashboardRoutes.js';
-
+import activityRoutes from "./routes/activityRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -19,6 +19,7 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/assignments', assignmentRoutes);
+app.use("/api/activity-logs", activityRoutes);
 app.use('/api/comments', commentRoutes);
 
 const PORT = process.env.PORT || 5000;

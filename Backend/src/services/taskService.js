@@ -28,7 +28,6 @@ export const updateTask = async (taskId, data, userId) => {
   const { title, description, status, deadline } = data;
 
   const priority = calculatePriority(deadline);
-
   const result = await pool.query(
     `UPDATE tasks
      SET title = $1,
